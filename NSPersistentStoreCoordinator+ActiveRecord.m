@@ -126,4 +126,17 @@ static NSPersistentStoreCoordinator *defaultCoordinator = nil;
 	return [[self coordinatorWithSqliteStoreNamed:kActiveRecordDefaultStoreFileName] retain];
 }
 
++ (NSError *)removeDefaultStoreFile; {
+    return [self removeStoreFile:kActiveRecordDefaultStoreFileName];
+}
+
++ (NSError *)removeStoreFile:(NSString *)storeFileName; {
+    NSError *error = nil;
+    if(![[NSFileManager defaultManager] removeItemAtPath:[NSPersistentStore stringForStoreName:storeFileName] error:&error]) {
+        DDLogError(@"Deleting the store at url %@ failed: %@", storeFileName, error);
+        return error;
+    }
+    return nil;
+}
+
 @end

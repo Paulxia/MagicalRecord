@@ -176,12 +176,13 @@ static NSString const * kActiveRecordManagedObjectContextKey = @"ActiveRecord_NS
 + (NSManagedObjectContext *) contextWithStoreCoordinator:(NSPersistentStoreCoordinator *)coordinator
 {
 	NSManagedObjectContext *context = nil;
-    if (coordinator != nil)
+	if (coordinator != nil)
 	{
-        ARLog(@"Creating MOContext %@", [NSThread isMainThread] ? @" *** On Main Thread ***" : @"");
-        context = [[NSManagedObjectContext alloc] init];
-        [context setPersistentStoreCoordinator:coordinator];
-    }
+		ARLog(@"Creating MOContext %@", [NSThread isMainThread] ? @" *** On Main Thread ***" : @"");
+		context = [[NSManagedObjectContext alloc] init];
+		[context setPersistentStoreCoordinator:coordinator];
+		[context setUndoManager:nil];
+	}
     return [context autorelease];
 }
 

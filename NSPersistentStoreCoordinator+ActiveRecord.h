@@ -24,4 +24,7 @@
 
 - (NSPersistentStore *) addInMemoryStore;
 
++ (NSError *)removeDefaultStoreFile;
++ (NSError *)removeStoreFile:(NSString *)storeFileName;
+
 @end

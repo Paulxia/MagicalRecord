@@ -1,4 +1,4 @@
-//
+ //
 //
 //  Created by Saul Mora on 11/15/09.
 //  Copyright 2010 Magical Panda Software, LLC All rights reserved.
@@ -30,6 +30,7 @@
 - (BOOL) deleteInContext:(NSManagedObjectContext *)context;
 
 + (BOOL) truncateAll;
++ (BOOL) truncateAllMatchingPredicate:(NSPredicate *)searchTerm;
 + (BOOL) truncateAllInContext:(NSManagedObjectContext *)context;
 
 + (NSArray *) ascendingSortDescriptors:(NSArray *)attributesToSortBy;
@@ -69,10 +70,16 @@
 + (NSFetchRequest *) requestAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context;
 
 + (NSArray *)findAllWithPredicate:(NSPredicate *)searchTerm;
++ (NSArray *)findAllWithPredicateNotFaulted:(NSPredicate *)searchTerm;
++ (NSArray *)findAllWithPredicate:(NSPredicate *)searchTerm withBlock:(void (^)(NSFetchRequest *))block;
 + (NSArray *)findAllWithPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context;
 
 - (id) objectWithMinValueFor:(NSString *)property;
 - (id) objectWithMinValueFor:(NSString *)property inContext:(NSManagedObjectContext *)context;
+
++ (id) objectWithObjectID:(NSManagedObjectID *)objectID;
++ (id) objectWithObjectID:(NSManagedObjectID *)objectID inContext:(NSManagedObjectContext *)context;
+- (id) objectWithObjectID:(NSManagedObjectID *)objectID;
 
 + (id)findFirst;
 + (id)findFirstInContext:(NSManagedObjectContext *)context;
@@ -85,6 +92,12 @@
 + (id) findFirstWithPredicate:(NSPredicate *)searchTerm sortedBy:(NSString *)sortBy ascending:(BOOL)ascending andRetrieveAttributes:(id)attributes, ...;
 + (id) findFirstWithPredicate:(NSPredicate *)searchTerm sortedBy:(NSString *)sortBy ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context andRetrieveAttributes:(id)attributes, ...;
 
++ (id)findFirstByUID:(id)searchValue;
++ (id)findFirstByUID:(id)searchValue inContext:(NSManagedObjectContext *)context;
++ (id)findFirstByUIDHash:(id)searchValue;
++ (id)findFirstByUIDHash:(id)searchValue inContext:(NSManagedObjectContext *)context;
+
+
 + (id)findFirstByAttribute:(NSString *)attribute withValue:(id)searchValue;
 + (id)findFirstByAttribute:(NSString *)attribute withValue:(id)searchValue inContext:(NSManagedObjectContext *)context;
 + (NSArray *)findByAttribute:(NSString *)attribute withValue:(id)searchValue;
@@ -92,8 +105,7 @@
 + (NSArray *)findByAttribute:(NSString *)attribute withValue:(id)searchValue andOrderBy:(NSString *)sortTerm ascending:(BOOL)ascending;
 + (NSArray *)findByAttribute:(NSString *)attribute withValue:(id)searchValue andOrderBy:(NSString *)sortTerm ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context;
 
-
-- (id) inContext:(NSManagedObjectContext *)otherContext;
+- (id) inContext:(NSManagedObjectContext*)context;
 - (id) inThreadContext;
 
 #if TARGET_OS_IPHONE
