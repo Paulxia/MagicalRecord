@@ -1,5 +1,6 @@
 //
 //  NSFetchedResultsController+ActiveRecord.h
+//  MagicalRecord
 //
 //  Created by Peter Steinberger on 18.04.11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.

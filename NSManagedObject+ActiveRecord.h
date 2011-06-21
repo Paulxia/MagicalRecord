@@ -1,4 +1,6 @@
- //
+//
+//  NSManagedObject+ActiveRecord.h
+//  MagicalRecord
 //
 //  Created by Saul Mora on 11/15/09.
 //  Copyright 2010 Magical Panda Software, LLC All rights reserved.
@@ -92,10 +94,10 @@
 + (id) findFirstWithPredicate:(NSPredicate *)searchTerm sortedBy:(NSString *)sortBy ascending:(BOOL)ascending andRetrieveAttributes:(id)attributes, ...;
 + (id) findFirstWithPredicate:(NSPredicate *)searchTerm sortedBy:(NSString *)sortBy ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context andRetrieveAttributes:(id)attributes, ...;
 
-+ (id)findFirstByUID:(id)searchValue;
-+ (id)findFirstByUID:(id)searchValue inContext:(NSManagedObjectContext *)context;
-+ (id)findFirstByUIDHash:(id)searchValue;
-+ (id)findFirstByUIDHash:(id)searchValue inContext:(NSManagedObjectContext *)context;
++ (id)findFirstByUID:(NSNumber *)searchValue;
++ (id)findFirstByUID:(NSNumber *)searchValue inContext:(NSManagedObjectContext *)context;
++ (id)findFirstByUIDHash:(NSNumber *)searchValue;
++ (id)findFirstByUIDHash:(NSNumber *)searchValue inContext:(NSManagedObjectContext *)context;
 
 
 + (id)findFirstByAttribute:(NSString *)attribute withValue:(id)searchValue;

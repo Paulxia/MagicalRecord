@@ -1,14 +1,17 @@
 //
 //  ARCoreDataAction.m
-//  Freshpod
+//  MagicalRecord
 //
 //  Created by Saul Mora on 2/24/11.
 //  Copyright 2011 Magical Panda Software. All rights reserved.
 //
 
 #import "ARCoreDataAction.h"
+#import "NSManagedObjectContext+ActiveRecord.h"
+#import <CoreData/CoreData.h>
 
 static dispatch_queue_t coredata_background_save_queue;
+dispatch_queue_t background_save_queue(void);
 
 dispatch_queue_t background_save_queue()
 {

@@ -1,5 +1,6 @@
 //
 //  NSManagedObjectContext+ActiveRecord.h
+//  MagicalRecord
 //
 //  Created by Saul Mora on 11/23/09.
 //  Copyright 2010 Magical Panda Software, LLC All rights reserved.

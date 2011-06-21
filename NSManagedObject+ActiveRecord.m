@@ -1,4 +1,7 @@
-
+//
+//  NSManagedObject+ActiveRecord.m
+//  MagicalRecord
+//
 //  Created by Saul Mora on 11/15/09.
 //  Copyright 2010 Magical Panda Software, LLC All rights reserved.
 //
@@ -6,7 +9,6 @@
 #import <CoreData/CoreData.h>
 #import "NSManagedObject+ActiveRecord.h"
 #import "NSManagedObjectContext+ActiveRecord.h"
-
 
 static NSUInteger defaultBatchSize = kActiveRecordDefaultBatchSize;
 
@@ -505,38 +507,20 @@ static NSUInteger defaultBatchSize = kActiveRecordDefaultBatchSize;
   return [self executeFetchRequest:request inContext:[NSManagedObjectContext contextForCurrentThread]];
 }
 
-+ (id)findFirstByUID:(id)searchValue {
++ (id)findFirstByUID:(NSNumber *)searchValue {
 	return [self findFirstByUID:searchValue inContext:[NSManagedObjectContext contextForCurrentThread]];
 }
 
-+ (id)findFirstByUID:(id)searchValue inContext:(NSManagedObjectContext *)context {
-	NSNumber *uidNum;
-	if ([searchValue isKindOfClass:[NSNumber class]]) {
-		uidNum = searchValue;
-	} else if ([searchValue isKindOfClass:[NSString class]]) {
-		uidNum = [NSNumber numberWithString:searchValue];
-	} else {
-		ARLog(@"Wrong type for searchValue!");
-		return nil;
-	}
-	return [self findFirstByAttribute:@"uid" withValue:uidNum];
++ (id)findFirstByUID:(NSNumber *)searchValue inContext:(NSManagedObjectContext *)context {
+	return [self findFirstByAttribute:@"uid" withValue:searchValue];
 }
 
-+ (id)findFirstByUIDHash:(id)searchValue {
++ (id)findFirstByUIDHash:(NSNumber *)searchValue {
 	return [self findFirstByUID:searchValue inContext:[NSManagedObjectContext contextForCurrentThread]];
 }
 
-+ (id)findFirstByUIDHash:(id)searchValue inContext:(NSManagedObjectContext *)context {
-	NSNumber *uidNum;
-	if ([searchValue isKindOfClass:[NSNumber class]]) {
-		uidNum = searchValue;
-	} else if ([searchValue isKindOfClass:[NSString class]]) {
-		uidNum = [NSNumber numberWithString:searchValue];
-	} else {
-		ARLog(@"Wrong type for searchValue!");
-		return nil;
-	}
-	return [self findFirstByAttribute:@"uidHash" withValue:uidNum];
++ (id)findFirstByUIDHash:(NSNumber *)searchValue inContext:(NSManagedObjectContext *)context {
+	return [self findFirstByAttribute:@"uidHash" withValue:searchValue];
 }
 
 + (id)findFirst
